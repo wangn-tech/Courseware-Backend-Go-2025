@@ -179,7 +179,7 @@ func main() {
 
 - 对变量进行取地址（&）操作，可以获得这个变量的指针变量。
 - 指针变量的值是指针**地址**。
-- *`对指针变量进行取值操作，可以获得指针变量指向的原变量的值`*。
+- 对指针变量进行取值操作，可以获得指针变量指向的原变量的值。
 
 so，有了指针之后我们就可以愉快的进行传递地址了(注意空指针引发的panic)，正常函数传值只会传递值的**副本**，但我们地址不怕啊，我们地址就算被copy一份，但还是指向那个值，**指针只是地址**
 
@@ -432,29 +432,30 @@ alice := People{
 一个结构体中可以嵌套包含另一个**结构体**或**结构体指针**,正因如此，声明也要嵌套式声明
 
 ```go
-type Info struct{
-		Name string
-		Age int
+type Info struct {
+	Name string
+	Age  int
 }
 
-type	Lanshaner struct{
-		Info 			// Info Info 
-		Group  string
+type Lanshaner struct {
+	Info  // Info Info
+	Group string
 }
 
-//初始化时也要初始化内层结构体
-func main(){
-  kq := &Lanshaner{
-    Info:Info{
-      Name:"J1407B",
-      Age:19,
-    },
-    Group:"后端Go组"
-  }
-  
-  fmt.Println(kq.Info.Name) // "J1407B"
+// 初始化时也要初始化内层结构体
+func main() {
+	kq := &Lanshaner{
+		Info: Info{
+			Name: "J1407B",
+			Age:  19,
+		},
+		Group: "后端Go组",
+	}
+
+	fmt.Println(kq.Info.Name) // "J1407B"
 	fmt.Println(kq.Group)     // "后端Go组"
 }
+
 ```
 
 ## 方法
